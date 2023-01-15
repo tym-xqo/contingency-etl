@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from etl import log, pg_source, snowflake_target
+from etl import log, pg_source, 
+from etl.snowflake_target import snowflake_target
 
 
 def thingo(tbl="enrollments"):
