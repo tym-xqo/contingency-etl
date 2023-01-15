@@ -6,7 +6,7 @@ from etl.snowflake_target import snowflake_target
 
 def thingo(tbl="enrollments"):
     rows = pg_source.get_results(tbl=tbl)
-    target_table = "test_enrollments"
+    target_table = "enrollments"
     snowflake_target(
         namespace="pc_fivetran_db.manual_wmx_api_stopgap",
         table=target_table,
