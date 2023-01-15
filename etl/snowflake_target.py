@@ -26,7 +26,7 @@ def snowflake_target(
 
     # write rows to CSV in tempfile
     # with tempfile.NamedTemporaryFile(mode="wt+", delete=False) as f:
-    with open(f"/tmp/{table}-out.csv") as f:
+    with open(f"/tmp/{table}-out.csv", "w") as f:
         fieldnames = [key.lower() for key in rows[0].keys()]
         writer = csv.DictWriter(f, fieldnames=fieldnames, quoting=csv.QUOTE_MINIMAL)
         for row in rows:
