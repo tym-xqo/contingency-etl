@@ -9,7 +9,7 @@ def get_previous_timestamps(tbl="enrollments"):
     timestamp_sql = f""" select max(created_at) as max_created
                               , max(updated_at) as max_updated
                               , max(id) max_id
-                           from {tbl};
+                           from pc_fivetran_db.pg_wmx_api_app_public.{tbl};
     """
     db.engine(SNOWFLAKE_URL)
     r = db.result(timestamp_sql)[0]
