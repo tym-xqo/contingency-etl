@@ -1,0 +1,12 @@
+- SNO: 
+    - point raw data access views for most tables to `swap` schema
+    - clone `activities` and `answers` tables to new schema
+- PG/PY: 
+    - get max(id) for each of `activities` and `answers` from Snowflake
+    - `copy` from Postgres `where id > $snowflake_max_id` and `copy` result into snowflake clone tables
+    - [union where max(updated_at) or max(created_at) > snowflake also]
+- SNO:
+    - point raw data access views for `activities` and `answers` at the new clone schema
+- PG/PY:
+    - incremental copy remaining tables to clone in a loop
+    - run hourly
