@@ -31,7 +31,7 @@ def get_results(tbl="enrollments"):
                         where created_at > :max_created
                            or updated_at > :max_updated
                            or id > :max_id
-                        limit 1000
+                        limit 100
     """
     db.engine(POSTGRES_URL)
     rows = db.result(
