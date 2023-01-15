@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from etl import log, pg_source, 
+from etl import log, pg_source
 from etl.snowflake_target import snowflake_target
 
 
