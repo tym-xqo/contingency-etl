@@ -20,7 +20,7 @@ def get_previous_timestamps(tbl="enrollments"):
 
 
 def get_results(tbl="enrollments"):
-    timestamps = get_previous_timestamps()
+    timestamps = get_previous_timestamps(tbl=tbl)
     max_created = timestamps["max_created"]
     max_updated = timestamps["max_updated"]
     max_id = timestamps["max_id"]
