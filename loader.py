@@ -17,4 +17,4 @@ def thingo(tbl="enrollments"):
 
 
 if __name__ == "__main__":
-    thingo(tbl="activities")
+    thingo(tbl="enrollments")
