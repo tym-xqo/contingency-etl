@@ -1,12 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
 from raw import db
-from dotenv import load_dotenv
 
-load_dotenv()
-SNOWFLAKE_URL = os.getenv("SNOWFLAKE_URL")
-POSTGRES_URL = os.getenv("POSTGRES_URL")
+from etl import POSTGRES_URL, SNOWFLAKE_URL
 
 
 def get_previous_timestamps(tbl="enrollments"):
@@ -15,6 +11,7 @@ def get_previous_timestamps(tbl="enrollments"):
                               , max(id) max_id
                            from {tbl};
     """
+    db.engine(SNOWFLAKE_URL)
     r = db.result(timestamp_sql)[0]
     timestamps = dict(
         max_created=r["max_created"], max_updated=r["max_updated"], max_id=r["max_id"]
@@ -32,7 +29,9 @@ def get_results(tbl="enrollments"):
                         where created_at > :max_created
                            or updated_at > :max_updated
                            or id > :max_id
+                        limit 1000
     """
+    db.engine(POSTGRES_URL)
     rows = db.result(
         extract_sql, max_created=max_created, max_updated=max_updated, max_id=max_id
     )

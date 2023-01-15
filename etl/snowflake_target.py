@@ -4,7 +4,7 @@ from raw import db
 import csv
 import tempfile
 
-from etl import log
+from etl import log, SNOWFLAKE_URL
 
 DEFAULT_NAMESPACE = "pc_fivetran_db.manual_wmx_api_stopgap"
 
@@ -17,7 +17,7 @@ def snowflake_target(
     # TODO: Add step to insert row in marker table when target load is complete
 
     # prevent doubling of % in table stage name by Snowflake dialect parser
-    db.engine(paramstyle="named")
+    db.engine(SNOWFLAKE_URL, paramstyle="named")
 
     # define stage name for table and append path
     target_stage = f"@{namespace}.%{table}"
