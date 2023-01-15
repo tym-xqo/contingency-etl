@@ -25,6 +25,8 @@ def get_results(tbl="enrollments"):
     max_updated = timestamps["max_updated"]
     max_id = timestamps["max_id"]
     extract_sql = f""" select *
+                            , false as _fivetran_deleted
+                            , now() as _fivetran_synced
                          from {tbl}
                         where created_at > :max_created
                            or updated_at > :max_updated
